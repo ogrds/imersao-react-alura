@@ -9,6 +9,6 @@ const Input = styled.input`
   border-radius: 5px;
 `;
 
-export default function InputText({ placeholder }) {
-  return <Input type="text" placeholder={placeholder} />;
+export default function InputText({ placeholder, onChange }) {
+  return <Input onChange={onChange} type="text" placeholder={placeholder} />;
 }

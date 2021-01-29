@@ -1,24 +1,43 @@
 {
+  "projectTitle": "Modern Family - Quiz",
   "bg": "/background/bg.jpg",
   "title": "Modern Family",
   "description": "Você Conhece tudo sobre a melhor série de todos os tempos?",
   "questions": [
     {
-      "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-      "title": "Como fazer um seletor por id via CSS?",
-      "description": "Essa é pra aquecer",
+      "image": "https://img.quizur.com/f/img5f6feb3556c517.27291460.jpg?lastEdited=1601170231",
+      "title": "Quem é esse?",
+      "description": "Essa é fácil, ein?",
       "answer": 2,
-      "alternatives": [".elemento", "*elemento", "#elemento", "%elemento"]
+      "alternatives": ["Phil", "Julius", "Jay", "Manny"]
     },
     {
-      "image": "https://media.giphy.com/media/13FrpeVH09Zrb2/giphy.gif",
-      "title": "Como fazer um background gradiente com css?",
-      "description": "Faz tempo em haha",
+      "image": "https://img.quizur.com/f/img5f6febacacd142.50990282.jpg?lastEdited=1601170354",
+      "title": "E essa?",
+      "description": "Fácil demais hahaha!",
+      "answer": 3,
+      "alternatives": ["Claire", "Haley", "Pam", "Glória"]
+    },
+    {
+      "image": "https://img.cinemablend.com/filter:scale/quill/3/f/8/f/1/c/3f8f1c7a959e85293de24736ddea14e4b25d1085.jpg",
+      "title": "Qual o instrumento que a Alex toca?",
+      "description": "Não precisa ter assistido muito pra saber.",
+      "answer": 1,
+      "alternatives": ["Guitarra", "Violoncelo", "Teclado", "Flauta"]
+    },
+    {
+      "image": "https://www.einerd.com.br/wp-content/uploads/2020/03/stella-modern-family-e1584449329872.jpg",
+      "title": "Qual o nome da cadelinha do Jay?",
+      "description": "Vamos lá, você consegue!",
       "answer": 0,
-      "alternatives": [
-        "background: linear-gradient(#e66465, #9198e5);",
-        "background: gradient(#e66465, #9198e5);"
-      ]
+      "alternatives": ["Stella", "Lola", "Daisy", "Sadie"]
+    },
+    {
+      "image": "https://i.pinimg.com/originals/01/e3/73/01e3733aaf4c378acd2fda1406d8b5d8.jpg",
+      "title": "Em qual estado, Phil e Claire renovaram os votos de casamento?",
+      "description": "Pra fechar com chave de ouro!",
+      "answer": 2,
+      "alternatives": ["Califórnia", "Luisiana", "Havaí", "Pensilvânia"]
     }
   ],
   "external": [""],

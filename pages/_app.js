@@ -1,5 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import db from "../db.json";
+import Head from "next/head";
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -35,6 +36,10 @@ const theme = db.theme;
 export default function App({ Component, pageProps }) {
   return (
     <>
+      <Head>
+        <title>{db.projectTitle}</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Component {...pageProps} />

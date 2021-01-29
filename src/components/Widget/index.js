@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Widget = styled.div`
   margin-top: 24px;
@@ -10,7 +10,9 @@ const Widget = styled.div`
   border-radius: 4px;
   overflow: hidden;
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     font-size: 16px;
     font-weight: 700;
     line-height: 1;
@@ -25,11 +27,22 @@ const Widget = styled.div`
 
 Widget.Header = styled.header`
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   padding: 18px 32px;
   background-color: ${({ theme }) => theme.colors.primary};
-  
+
+  * {
+    margin: 0;
+  }
+`;
+
+Widget.Question = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.primary};
+
   * {
     margin: 0;
   }
@@ -47,6 +60,13 @@ Widget.Content = styled.div`
     list-style: none;
     padding: 0;
   }
+`;
+
+Widget.Result = styled.div`
+  padding: 24px 32px 32px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export default Widget;
