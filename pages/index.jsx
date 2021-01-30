@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import db from "../db.json";
 import Widget from "../src/components/Widget";
 import QuizLogo from "../src/components/QuizLogo";
@@ -50,7 +48,7 @@ export default function Home() {
                 placeholder="Digite seu nome para continuar."
               />
               <Button
-                content={<FontAwesomeIcon icon={faPlay} />}
+                content="Iniciar"
                 disabled={name.length === 0}
                 type="submit"
               />

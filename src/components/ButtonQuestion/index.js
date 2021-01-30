@@ -1,17 +1,18 @@
 import styled from "styled-components";
+import db from "../../../db.json";
 
 const ButtonQuestion = styled.button`
   width: 100%;
   height: 35px;
   border: 0;
   border-radius: 5px;
-  box-shadow: 0 0 3px #006c80;
-  background-color: #006c80;
+  box-shadow: 0 0 3px ${db.theme.colors.primary};
+  background-color: ${db.theme.colors.primary};
   font-weight: 600;
   color: #ffffff;
   cursor: pointer;
   &:disabled {
-    background-color: #bdbdbd;
+    background-color: ${db.theme.colors.secondary};
     cursor: not-allowed;
   }
 `;
@@ -24,14 +25,14 @@ ButtonQuestion.Reset = styled.button`
   width: 35px;
   border: 0;
   border-radius: 50%;
-  box-shadow: 0 0 3px #006c80;
-  background-color: #006c80;
+  box-shadow: 0 0 3px ${db.theme.colors.primary};
+  background-color: ${db.theme.colors.primary};
   font-weight: 600;
   color: #ffffff;
   font-size: 1rem;
   cursor: pointer;
   &:disabled {
-    background-color: #bdbdbd;
+    background-color: ${db.theme.colors.secondary};
     cursor: not-allowed;
   }
 `;

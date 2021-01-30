@@ -63,9 +63,17 @@ Widget.Content = styled.div`
 `;
 
 Widget.Result = styled.div`
-  padding: 24px 32px 32px 32px;
+  padding: 24px 32px 10px 32px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-flow: column;
+`;
+
+Widget.Options = styled.div`
+  padding: 5px 32px 32px 32px;
+  display: flex;
+  justify-content: space-around;
   align-items: center;
 `;
 

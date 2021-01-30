@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRedoAlt, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faDoorOpen, faRedoAlt } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import db from "../../db.json";
 import Widget from "../../src/components/Widget";
@@ -8,9 +8,11 @@ import QuizLogo from "../../src/components/QuizLogo";
 import QuizBackground from "../../src/components/QuizBackground";
 import Footer from "../../src/components/Footer";
 import GitHubCorner from "../../src/components/GitHubCorner";
-import Image from "../../src/components/Image";
-import OptionQuiz from "../../src/components/OptionQuiz";
 import ButtonQuestion from "../../src/components/ButtonQuestion";
+import QuizContent from "../../src/components/QuizContent";
+
+import Link from "next/link";
+import Spinner from "../../src/components/Spinner";
 
 export const QuizContainer = styled.div`
   width: 100%;
@@ -23,60 +25,6 @@ export const QuizContainer = styled.div`
   }
 `;
 
-export const SmallText = styled.small`
-  color: #fefefe8a;
-`;
-
-export const Hr = styled.hr`
-  border: 0;
-  border-top: 1px solid #ffffff26;
-  width: 50px;
-  position: absolute;
-`;
-
-const QuizContent = ({ ...props }) => {
-  return (
-    <Widget>
-      <Widget.Header>
-        <h2>
-          {`Pergunta ${props.questionIndex + 1} de ${props.total_questions}`}
-        </h2>
-      </Widget.Header>
-      <Image src={props.question.image} />
-      <Widget.Content>
-        <h2>{props.question.title}</h2>
-        <SmallText>{props.question.description}</SmallText>
-        <Hr />
-        <form
-          onSubmit={(infos) => {
-            infos.preventDefault();
-            props.onSubmit();
-          }}
-        >
-          <ul>
-            <li>
-              {props.alternatives.map((item, key) => {
-                return (
-                  <OptionQuiz
-                    onChange={(infos) => {
-                      infos.preventDefault();
-                      props.onChange(infos);
-                    }}
-                    key={key}
-                    content={item}
-                    number={key + 1}
-                  />
-                );
-              })}
-            </li>
-          </ul>
-          <ButtonQuestion>Confirmar</ButtonQuestion>
-        </form>
-      </Widget.Content>
-    </Widget>
-  );
-};
-
 export default function Quiz() {
   const INITIAL = {
     reset: false,
@@ -85,6 +33,11 @@ export default function Quiz() {
     acertos: 0,
     currentQuestion: 0,
   };
+
+  const [showCorrect, setShowCorrect] = useState(false);
+  const [showWrong, setShowWrong] = useState(false);
+  const [isSelectedOption, setIsSelectedOption] = useState(false);
+  const [randomNumber, setRandomNumber] = useState(0);
   const [reset, setReset] = useState(INITIAL.reset);
   const [screenState, setScreenState] = useState(INITIAL.screenState);
   const [selectedOption, setSelectedOption] = useState(INITIAL.selectedOption);
@@ -98,7 +51,11 @@ export default function Quiz() {
   const alternatives = question.alternatives;
   const answer = question.answer;
 
+  const generateNumberRandom = () =>
+    setRandomNumber(Math.floor(Math.random() * 1000));
+
   useEffect(() => {
+    generateNumberRandom();
     setTimeout(() => {
       setReset(false);
       setScreenState("QUIZ");
@@ -106,19 +63,34 @@ export default function Quiz() {
   }, [reset]);
 
   const handleSubmit = () => {
+    setIsSelectedOption(false);
+    generateNumberRandom();
+
     if (selectedOption === answer) {
       setAcertos(acertos + 1);
+      setShowCorrect(true);
+      setTimeout(() => {
+        setShowCorrect(false);
+      }, 2000);
+    } else {
+      setShowWrong(true);
+      setTimeout(() => {
+        setShowWrong(false);
+      }, 2000);
     }
 
-    const nextQuestion = questionIndex + 1;
-    if (nextQuestion < total_questions) {
-      setCurrentQuestion(questionIndex + 1);
-    } else {
-      setScreenState("FINISH");
-    }
+    setTimeout(() => {
+      const nextQuestion = questionIndex + 1;
+      if (nextQuestion < total_questions) {
+        setCurrentQuestion(questionIndex + 1);
+      } else {
+        setScreenState("FINISH");
+      }
+    }, 2000);
   };
 
   const handleChange = (e) => {
+    setIsSelectedOption(true);
     const selected = e.target.value - 1;
     setSelectedOption(selected);
   };
@@ -138,19 +110,23 @@ export default function Quiz() {
         {screenState === "LOADING" && (
           <Widget>
             <Widget.Header>Carregando...</Widget.Header>
-            <Widget.Content>
-              <FontAwesomeIcon icon={faSpinner} size="lg" />
+            <Widget.Content style={{ textAlign: "center" }}>
+              <Spinner />
             </Widget.Content>
           </Widget>
         )}
         {screenState === "QUIZ" && (
           <QuizContent
+            key={randomNumber}
+            isSelectedOption={isSelectedOption}
             question={question}
             questionIndex={questionIndex}
             total_questions={total_questions}
             alternatives={alternatives}
             onSubmit={handleSubmit}
             onChange={handleChange}
+            showCorrect={showCorrect}
+            showWrong={showWrong}
           />
         )}
         {screenState === "FINISH" && (
@@ -188,13 +164,27 @@ export default function Quiz() {
                   </p>
                 </div>
               </div>
+            </Widget.Result>
+            <hr
+              style={{
+                width: "50%",
+                borderColor: "#606060",
+                boxShadow: "0 0 1px #8d8d8d",
+              }}
+            />
+            <Widget.Options>
               <ButtonQuestion.Reset
                 onClick={handleClickReset}
                 title="Jogar Novamente"
               >
                 <FontAwesomeIcon icon={faRedoAlt} />
               </ButtonQuestion.Reset>
-            </Widget.Result>
+              <Link href="/">
+                <ButtonQuestion.Reset title="Sair">
+                  <FontAwesomeIcon icon={faDoorOpen} />
+                </ButtonQuestion.Reset>
+              </Link>
+            </Widget.Options>
           </Widget>
         )}
         <Footer />

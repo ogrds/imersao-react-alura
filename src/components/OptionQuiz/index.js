@@ -15,8 +15,8 @@ const OptionStyle = styled.div`
     font-weight: 600;
   }
   input[type="radio"]:checked + label {
-    background: #006c80;
-    box-shadow: 0 0 3px #006c80;
+    background: ${db.theme.colors.primary};
+    box-shadow: 0 0 3px ${db.theme.colors.primary};
     color: #fff;
   }
 `;
@@ -26,12 +26,12 @@ export default function OptionQuiz({ content, number, onChange }) {
     <OptionStyle>
       <input
         type="radio"
-        id={content.toLowerCase()}
+        id={`test__${number}`}
         name="optionQuiz"
         onChange={onChange}
         value={number}
       />
-      <label htmlFor={content.toLowerCase()}>{content}</label>
+      <label htmlFor={`test__${number}`}>{content}</label>
     </OptionStyle>
   );
 }
