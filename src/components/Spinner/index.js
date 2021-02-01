@@ -5,7 +5,13 @@ export default function Spinner() {
     <svg width="130px">
       <rect x="0" y="0" width="10px" height="10px" fill="transparent" />
       <g>
-        <circle cx="16" cy="64" r="16" fill={db.theme.colors.primary} fillOpacity="1" />
+        <circle
+          cx="16"
+          cy="64"
+          r="16"
+          fill={db.theme.colors.primary}
+          fillOpacity="1"
+        />
         <circle
           cx="16"
           cy="64"

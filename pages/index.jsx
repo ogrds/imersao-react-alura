@@ -8,6 +8,7 @@ import GitHubCorner from "../src/components/GitHubCorner";
 import InputText from "../src/components/InputText";
 import Button from "../src/components/Button";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { useState } from "react";
 
 export const QuizContainer = styled.div`
@@ -58,8 +59,17 @@ export default function Home() {
 
         <Widget>
           <Widget.Content>
-            <h1>Quizes da Galera</h1>
-            <p>lorem ipsum dolor sit amet...</p>
+            <h1 style={{ marginBottom: "10px" }}>Quizes da Galera</h1>
+            {db.external.map((item, key) => {
+              const [project, user] = item
+                .replace(/\//g, "")
+                .replace("https:", "")
+                .replace(".vercel.app", "")
+                .split(".");
+              return (
+                <Widget.Topic key={key} href={`/quiz/${project}?name=${user}`}>{`${user}/${project}`}</Widget.Topic>
+              );
+            })}
           </Widget.Content>
         </Widget>
         <Footer />

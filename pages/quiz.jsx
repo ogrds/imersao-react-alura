@@ -2,17 +2,17 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDoorOpen, faRedoAlt } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
-import db from "../../db.json";
-import Widget from "../../src/components/Widget";
-import QuizLogo from "../../src/components/QuizLogo";
-import QuizBackground from "../../src/components/QuizBackground";
-import Footer from "../../src/components/Footer";
-import GitHubCorner from "../../src/components/GitHubCorner";
-import ButtonQuestion from "../../src/components/ButtonQuestion";
-import QuizContent from "../../src/components/QuizContent";
+import db from "../db.json";
+import Widget from "../src/components/Widget";
+import QuizLogo from "../src/components/QuizLogo";
+import QuizBackground from "../src/components/QuizBackground";
+import Footer from "../src/components/Footer";
+import GitHubCorner from "../src/components/GitHubCorner";
+import ButtonQuestion from "../src/components/ButtonQuestion";
+import QuizContent from "../src/components/QuizContent";
 
 import Link from "next/link";
-import Spinner from "../../src/components/Spinner";
+import Spinner from "../src/components/Spinner";
 
 export const QuizContainer = styled.div`
   width: 100%;
